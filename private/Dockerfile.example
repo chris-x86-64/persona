@@ -1,0 +1,13 @@
+FROM chrisx86/hubot-base-withslack
+MAINTAINER Christopher Smith <chris@binc.jp>
+
+ENV HUBOT_ADAPTER slack
+ENV HUBOT_NAME <your_bots_name>
+ENV HUBOT_SLACK_TOKEN <your_bots_access_token>
+ENV HUBOT_SLACK_TEAM <the_team_your_bot_belongs_to>
+ENV HUBOT_SLACK_BOTNAME ${HUBOT_NAME}
+
+WORKDIR /opt/bot
+
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
+CMD bin/hubot
