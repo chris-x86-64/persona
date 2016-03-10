@@ -1,15 +1,10 @@
-FROM fedora:22
+FROM fedora:latest
 MAINTAINER Christopher Smith <chris@binc.jp>
 
-ENV BOTDIR /opt/bot
-
 RUN dnf update -y
-RUN dnf groupinstall -y "Development Tools"
-RUN dnf install tar -y \
-  && dnf clean all
-
+RUN dnf install --disableplugin=deltarpm -y tar findutils git && dnf clean all
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 RUN cp -f ~/.nvm/nvm.sh ~/.nvm/nvm-tmp.sh; \
   echo "nvm install 5.7; nvm alias default 5.7" >> ~/.nvm/nvm-tmp.sh; \
-  sh ~/.nvm/nvm-tmp.sh; \
+  bash ~/.nvm/nvm-tmp.sh; \
   rm ~/.nvm/nvm-tmp.sh;

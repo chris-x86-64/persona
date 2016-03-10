@@ -3,7 +3,10 @@
 FROM chrisx86/hubot-base-withslack
 MAINTAINER Christopher Smith <chris@binc.jp>
 
+ENV BOTDIR /opt/bot
+
 RUN git clone --depth=1 https://github.com/chris-x86-64/pion.git ${BOTDIR}
+# or a hubot repo of your choice
 WORKDIR ${BOTDIR}
 RUN /bin/bash -l -c "npm install"
 
@@ -12,7 +15,4 @@ ENV HUBOT_NAME <your_bots_name>
 ENV HUBOT_SLACK_TOKEN <your_bots_access_token>
 ENV HUBOT_SLACK_TEAM <the_team_your_bot_belongs_to>
 ENV HUBOT_SLACK_BOTNAME ${HUBOT_NAME}
-
-WORKDIR /opt/bot
-
 CMD ["/bin/bash", "-l", "-c", "bin/hubot"]
