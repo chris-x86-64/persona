@@ -1,5 +1,11 @@
+# docker build --no-cache .
+
 FROM chrisx86/hubot-base-withslack
 MAINTAINER Christopher Smith <chris@binc.jp>
+
+RUN git clone --depth=1 https://github.com/chris-x86-64/pion.git ${BOTDIR}
+WORKDIR ${BOTDIR}
+RUN /bin/bash -l -c "npm install"
 
 ENV HUBOT_ADAPTER slack
 ENV HUBOT_NAME <your_bots_name>
@@ -9,5 +15,4 @@ ENV HUBOT_SLACK_BOTNAME ${HUBOT_NAME}
 
 WORKDIR /opt/bot
 
-ENTRYPOINT ["/bin/bash", "-l", "-c"]
-CMD bin/hubot
+CMD ["/bin/bash", "-l", "-c", "bin/hubot"]

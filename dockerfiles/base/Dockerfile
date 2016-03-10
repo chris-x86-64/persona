@@ -13,7 +13,3 @@ RUN cp -f ~/.nvm/nvm.sh ~/.nvm/nvm-tmp.sh; \
   echo "nvm install 5.7; nvm alias default 5.7" >> ~/.nvm/nvm-tmp.sh; \
   sh ~/.nvm/nvm-tmp.sh; \
   rm ~/.nvm/nvm-tmp.sh;
-
-RUN git clone --depth=1 https://github.com/chris-x86-64/pion.git ${BOTDIR}
-WORKDIR ${BOTDIR}
-RUN /bin/bash -l -c "npm install"
